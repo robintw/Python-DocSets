@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" SYSTEM "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/><title>scipy.optimize.brute — SciPy v0.11.dev Reference Guide (DRAFT)</title><link href="../_static/scipy.css" rel="stylesheet" type="text/css"/><link href="../_static/pygments.css" rel="stylesheet" type="text/css"/><script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.11.0.dev-b924f0b',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script><script src="../_static/jquery.js" type="text/javascript"></script><script src="../_static/underscore.js" type="text/javascript"></script><script src="../_static/doctools.js" type="text/javascript"></script><link href="../index.html" rel="top" title="SciPy v0.11.dev Reference Guide (DRAFT)"/><link href="../optimize.html" rel="up" title="Optimization and root finding (scipy.optimize)"/><link href="scipy.optimize.fminbound.html" rel="next" title="scipy.optimize.fminbound"/><link href="scipy.optimize.anneal.html" rel="prev" title="scipy.optimize.anneal"/></head><body>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+<li class="right" style="margin-right: 10px">
+<a accesskey="I" href="../genindex.html" title="General Index">index</a></li>
+<li class="right">
+<a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+<li class="right">
+<a href="../np-modindex.html" title="Python Module Index">modules</a> |</li>
+<li class="right">
+<a accesskey="N" href="scipy.optimize.fminbound.html" title="scipy.optimize.fminbound">next</a> |</li>
+<li class="right">
+<a accesskey="P" href="scipy.optimize.anneal.html" title="scipy.optimize.anneal">previous</a> |</li>
+<li><a href="../index.html">SciPy v0.11.dev Reference Guide (DRAFT)</a> »</li>
+<li><a accesskey="U" href="../optimize.html">Optimization and root finding (<tt class="docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal"><span class="pre">scipy.optimize</span></tt>)</a> »</li>
+</ul>
+</div>
+<div class="document">
+<div class="documentwrapper">
+<div class="bodywrapper">
+<div class="body">
+<div class="section" id="scipy-optimize-brute">
+<h1>scipy.optimize.brute<a class="headerlink" href="#scipy-optimize-brute" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<a name="//apple_ref/cpp/func/scipy.optimize.brute"></a><dt id="scipy.optimize.brute">
+<tt class="descclassname">scipy.optimize.</tt><tt class="descname">brute</tt><big>(</big><em>func</em>, <em>ranges</em>, <em>args=()</em>, <em>Ns=20</em>, <em>full_output=0</em>, <em>finish=&lt;function fmin at 0x3b48230&gt;</em><big>)</big><a class="headerlink" href="#scipy.optimize.brute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimize a function over a given range by brute force.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name"></col>
+<col class="field-body"></col>
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>func</strong> : callable <tt class="docutils literal"><span class="pre">f(x,*args)</span></tt></p>
+<blockquote>
+<div><p>Objective function to be minimized.</p>
+</div></blockquote>
+<p><strong>ranges</strong> : tuple</p>
+<blockquote>
+<div><p>Each element is a tuple of parameters or a slice object to
+be handed to <tt class="docutils literal"><span class="pre">numpy.mgrid</span></tt>.</p>
+</div></blockquote>
+<p><strong>args</strong> : tuple</p>
+<blockquote>
+<div><p>Extra arguments passed to function.</p>
+</div></blockquote>
+<p><strong>Ns</strong> : int</p>
+<blockquote>
+<div><p>Default number of samples, if those are not provided.</p>
+</div></blockquote>
+<p><strong>full_output</strong> : bool</p>
+<blockquote>
+<div><p>If True, return the evaluation grid.</p>
+</div></blockquote>
+<p><strong>finish</strong> : callable, optional</p>
+<blockquote>
+<div><p>An optimization function that is called with the result of brute force
+minimization as initial guess.  <em class="xref py py-obj">finish</em> should take the initial guess
+as positional argument, and take take <em class="xref py py-obj">args</em>, <em class="xref py py-obj">full_output</em> and <em class="xref py py-obj">disp</em>
+as keyword arguments.  See Notes for more details.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>x0</strong> : ndarray</p>
+<blockquote>
+<div><p>Value of arguments to <em class="xref py py-obj">func</em>, giving minimum over the grid.</p>
+</div></blockquote>
+<p><strong>fval</strong> : int</p>
+<blockquote>
+<div><p>Function value at minimum.</p>
+</div></blockquote>
+<p><strong>grid</strong> : tuple</p>
+<blockquote>
+<div><p>Representation of the evaluation grid.  It has the same
+length as x0.</p>
+</div></blockquote>
+<p><strong>Jout</strong> : ndarray</p>
+<blockquote class="last">
+<div><p>Function values over grid:  <tt class="docutils literal"><span class="pre">Jout</span> <span class="pre">=</span> <span class="pre">func(*grid)</span></tt>.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>The range is respected by the brute force minimization, but if the <em class="xref py py-obj">finish</em>
+keyword specifies another optimization function (including the default
+<a class="reference internal" href="scipy.optimize.fmin.html#scipy.optimize.fmin" title="scipy.optimize.fmin"><tt class="xref py py-obj docutils literal"><span class="pre">fmin</span></tt></a>), the returned value may still be (just) outside the range.  In
+order to ensure the range is specified, use <tt class="docutils literal"><span class="pre">finish=None</span></tt>.</p>
+</dd></dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sphinxsidebar">
+<div class="sphinxsidebarwrapper">
+<p class="logo"><a href="../index.html">
+<img alt="Logo" class="logo" src="../_static/scipyshiny_small.png"/>
+</a></p>
+<h4>Previous topic</h4>
+<p class="topless"><a href="scipy.optimize.anneal.html" title="previous chapter">scipy.optimize.anneal</a></p>
+<h4>Next topic</h4>
+<p class="topless"><a href="scipy.optimize.fminbound.html" title="next chapter">scipy.optimize.fminbound</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+<li><a href="../_sources/generated/scipy.optimize.brute.txt" rel="nofollow">Show Source</a></li>
+</ul>
+<ul class="this-page-menu">
+<li><a href="/scipy/docs/scipy.optimize.brute">Edit page</a></li>
+</ul>
+<div id="searchbox" style="display: none">
+<h3>Quick search</h3>
+<form action="../search.html" class="search" method="get">
+<input name="q" size="18" type="text"/>
+<input type="submit" value="Go"/>
+<input name="check_keywords" type="hidden" value="yes"/>
+<input name="area" type="hidden" value="default"/>
+</form>
+<p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+</div>
+</div>
+<div class="clearer"></div>
+</div>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+<li class="right" style="margin-right: 10px">
+<a href="../genindex.html" title="General Index">index</a></li>
+<li class="right">
+<a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+<li class="right">
+<a href="../np-modindex.html" title="Python Module Index">modules</a> |</li>
+<li class="right">
+<a href="scipy.optimize.fminbound.html" title="scipy.optimize.fminbound">next</a> |</li>
+<li class="right">
+<a href="scipy.optimize.anneal.html" title="scipy.optimize.anneal">previous</a> |</li>
+<li><a href="../index.html">SciPy v0.11.dev Reference Guide (DRAFT)</a> »</li>
+<li><a href="../optimize.html">Optimization and root finding (<tt class="docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal"><span class="pre">scipy.optimize</span></tt>)</a> »</li>
+</ul>
+</div>
+<div class="footer">
+        © Copyright 2008-2009, The Scipy community.
+      Last updated on Feb 24, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+</body></html>

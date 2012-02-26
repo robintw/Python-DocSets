@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" SYSTEM "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/><title>scipy.special.lambertw — SciPy v0.11.dev Reference Guide (DRAFT)</title><link href="../_static/scipy.css" rel="stylesheet" type="text/css"/><link href="../_static/pygments.css" rel="stylesheet" type="text/css"/><script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.11.0.dev-b924f0b',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script><script src="../_static/jquery.js" type="text/javascript"></script><script src="../_static/underscore.js" type="text/javascript"></script><script src="../_static/doctools.js" type="text/javascript"></script><link href="../index.html" rel="top" title="SciPy v0.11.dev Reference Guide (DRAFT)"/><link href="../special.html" rel="up" title="Special functions (scipy.special)"/><link href="scipy.special.zeta.html" rel="next" title="scipy.special.zeta"/><link href="scipy.special.spence.html" rel="prev" title="scipy.special.spence"/></head><body>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+<li class="right" style="margin-right: 10px">
+<a accesskey="I" href="../genindex.html" title="General Index">index</a></li>
+<li class="right">
+<a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+<li class="right">
+<a href="../np-modindex.html" title="Python Module Index">modules</a> |</li>
+<li class="right">
+<a accesskey="N" href="scipy.special.zeta.html" title="scipy.special.zeta">next</a> |</li>
+<li class="right">
+<a accesskey="P" href="scipy.special.spence.html" title="scipy.special.spence">previous</a> |</li>
+<li><a href="../index.html">SciPy v0.11.dev Reference Guide (DRAFT)</a> »</li>
+<li><a accesskey="U" href="../special.html">Special functions (<tt class="docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal"><span class="pre">scipy.special</span></tt>)</a> »</li>
+</ul>
+</div>
+<div class="document">
+<div class="documentwrapper">
+<div class="bodywrapper">
+<div class="body">
+<div class="section" id="scipy-special-lambertw">
+<h1>scipy.special.lambertw<a class="headerlink" href="#scipy-special-lambertw" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<a name="//apple_ref/cpp/func/scipy.special.lambertw"></a><dt id="scipy.special.lambertw">
+<tt class="descclassname">scipy.special.</tt><tt class="descname">lambertw</tt><big>(</big><em>z</em>, <em>k=0</em>, <em>tol=1e-8</em><big>)</big><a class="headerlink" href="#scipy.special.lambertw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lambert W function.</p>
+<p>The Lambert W function <em class="xref py py-obj">W(z)</em> is defined as the inverse function
+of <img alt="w \exp(w)" class="math" src="../_images/math/4f14b8f56034ac47a737c7a68d61849c9468570f.png" style="vertical-align: -5px"/>. In other words, the value of <img alt="W(z)" class="math" src="../_images/math/d9f092163480eadf6f5084b9223116e5ee02f709.png" style="vertical-align: -5px"/> is
+such that <img alt="z = W(z) \exp(W(z))" class="math" src="../_images/math/453b5e9b62a3f5ffa964b35fe3d393cfcd78c6c0.png" style="vertical-align: -5px"/> for any complex number
+<img alt="z" class="math" src="../_images/math/b13f21416d84e13708696f34dea81026cda583c9.png" style="vertical-align: -1px"/>.</p>
+<p>The Lambert W function is a multivalued function with infinitely
+many branches. Each branch gives a separate solution of the
+equation <img alt="w \exp(w)" class="math" src="../_images/math/4f14b8f56034ac47a737c7a68d61849c9468570f.png" style="vertical-align: -5px"/>. Here, the branches are indexed by the
+integer <em class="xref py py-obj">k</em>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name"></col>
+<col class="field-body"></col>
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>z</strong> : array_like</p>
+<blockquote>
+<div><p>Input argument</p>
+</div></blockquote>
+<p><strong>k</strong> : integer, optional</p>
+<blockquote>
+<div><p>Branch index</p>
+</div></blockquote>
+<p><strong>tol</strong> : float</p>
+<blockquote class="last">
+<div><p>Evaluation tolerance</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>All branches are supported by <a class="reference internal" href="#scipy.special.lambertw" title="scipy.special.lambertw"><tt class="xref py py-obj docutils literal"><span class="pre">lambertw</span></tt></a>:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">lambertw(z)</span></tt> gives the principal solution (branch 0)</li>
+<li><tt class="docutils literal"><span class="pre">lambertw(z,</span> <span class="pre">k)</span></tt> gives the solution on branch <em class="xref py py-obj">k</em></li>
+</ul>
+<p>The Lambert W function has two partially real branches: the
+principal branch (<em class="xref py py-obj">k = 0</em>) is real for real <em class="xref py py-obj">z &gt; -1/e</em>, and the
+<em class="xref py py-obj">k = -1</em> branch is real for <em class="xref py py-obj">-1/e &lt; z &lt; 0</em>. All branches except
+<em class="xref py py-obj">k = 0</em> have a logarithmic singularity at <em class="xref py py-obj">z = 0</em>.</p>
+<p class="rubric">Possible issues</p>
+<p>The evaluation can become inaccurate very close to the branch point
+at <em class="xref py py-obj">-1/e</em>. In some corner cases, <a class="reference internal" href="#scipy.special.lambertw" title="scipy.special.lambertw"><tt class="xref py py-func docutils literal"><span class="pre">lambertw</span></tt></a> might currently
+fail to converge, or can end up on the wrong branch.</p>
+<p class="rubric">Algorithm</p>
+<p>Halley’s iteration is used to invert <em class="xref py py-obj">w exp(w)</em>, using a first-order
+asymptotic approximation (<em class="xref py py-obj">O(log(w))</em> or <em class="xref py py-obj">O(w)</em>) as the initial
+estimate.</p>
+<p>The definition, implementation and choice of branches is based
+on Corless et al, “On the Lambert W function”, Adv. Comp. Math. 5
+(1996) 329-359, available online here:
+<a class="reference external" href="http://www.apmaths.uwo.ca/~djeffrey/Offprints/W-adv-cm.pdf">http://www.apmaths.uwo.ca/~djeffrey/Offprints/W-adv-cm.pdf</a></p>
+<p>TODO: use a series expansion when extremely close to the branch point
+at <em class="xref py py-obj">-1/e</em> and make sure that the proper branch is chosen there</p>
+<p class="rubric">Examples</p>
+<p>The Lambert W function is the inverse of <em class="xref py py-obj">w exp(w)</em>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">lambertw</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">w</span> <span class="o">=</span> <span class="n">lambertw</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">w</span>
+</pre></div>
+</div>
+<p>0.56714329040978387299996866221035555
+&gt;&gt;&gt; w*exp(w)
+1.0</p>
+<p>Any branch gives a valid inverse:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">w</span> <span class="o">=</span> <span class="n">lambertw</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">w</span>
+</pre></div>
+</div>
+<p>(-2.8535817554090378072068187234910812 +
+17.113535539412145912607826671159289j)
+&gt;&gt;&gt; w*exp(w)
+(1.0 + 3.5075477124212226194278700785075126e-36j)</p>
+<p class="rubric">Applications to equation-solving</p>
+<p>The Lambert W function may be used to solve various kinds of
+equations, such as finding the value of the infinite power
+tower <em class="xref py py-obj">z^{z^{z^{ldots}}}</em>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">tower</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>... if n == 0:
+... return z
+... return z ** tower(z, n-1)
+...
+&gt;&gt;&gt; tower(0.5, 100)
+0.641185744504986
+&gt;&gt;&gt; -lambertw(-log(0.5))/log(0.5)
+0.6411857445049859844862004821148236665628209571911</p>
+<p class="rubric">Properties</p>
+<p>The Lambert W function grows roughly like the natural logarithm
+for large arguments:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lambertw</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>5.2496028524016
+&gt;&gt;&gt; log(1000)
+6.90775527898214
+&gt;&gt;&gt; lambertw(10**100)
+224.843106445119
+&gt;&gt;&gt; log(10**100)
+230.258509299405</p>
+<p>The principal branch of the Lambert W function has a rational
+Taylor series expansion around <em class="xref py py-obj">z = 0</em>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">nprint</span><span class="p">(</span><span class="n">taylor</span><span class="p">(</span><span class="n">lambertw</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>[0.0, 1.0, -1.0, 1.5, -2.666666667, 5.208333333, -10.8]</p>
+<p>Some special values and limits are:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lambertw</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>0.0
+&gt;&gt;&gt; lambertw(1)
+0.567143290409784
+&gt;&gt;&gt; lambertw(e)
+1.0
+&gt;&gt;&gt; lambertw(inf)
++inf
+&gt;&gt;&gt; lambertw(0, k=-1)
+-inf
+&gt;&gt;&gt; lambertw(0, k=3)
+-inf
+&gt;&gt;&gt; lambertw(inf, k=3)
+(+inf + 18.8495559215388j)</p>
+<p>The <em class="xref py py-obj">k = 0</em> and <em class="xref py py-obj">k = -1</em> branches join at <em class="xref py py-obj">z = -1/e</em> where
+<em class="xref py py-obj">W(z) = -1</em> for both branches. Since <em class="xref py py-obj">-1/e</em> can only be represented
+approximately with mpmath numbers, evaluating the Lambert W function
+at this point only gives <em class="xref py py-obj">-1</em> approximately:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lambertw</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">e</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>-0.999999999999837133022867
+&gt;&gt;&gt; lambertw(-1/e, -1)
+-1.00000000000016286697718</p>
+<p>If <em class="xref py py-obj">-1/e</em> happens to round in the negative direction, there might be
+a small imaginary part:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">lambertw</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>(-1.0 + 8.22007971511612e-9j)</p>
+</dd></dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sphinxsidebar">
+<div class="sphinxsidebarwrapper">
+<p class="logo"><a href="../index.html">
+<img alt="Logo" class="logo" src="../_static/scipyshiny_small.png"/>
+</a></p>
+<h4>Previous topic</h4>
+<p class="topless"><a href="scipy.special.spence.html" title="previous chapter">scipy.special.spence</a></p>
+<h4>Next topic</h4>
+<p class="topless"><a href="scipy.special.zeta.html" title="next chapter">scipy.special.zeta</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+<li><a href="../_sources/generated/scipy.special.lambertw.txt" rel="nofollow">Show Source</a></li>
+</ul>
+<ul class="this-page-menu">
+<li><a href="/scipy/docs/scipy.special.lambertw">Edit page</a></li>
+</ul>
+<div id="searchbox" style="display: none">
+<h3>Quick search</h3>
+<form action="../search.html" class="search" method="get">
+<input name="q" size="18" type="text"/>
+<input type="submit" value="Go"/>
+<input name="check_keywords" type="hidden" value="yes"/>
+<input name="area" type="hidden" value="default"/>
+</form>
+<p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+</div>
+</div>
+<div class="clearer"></div>
+</div>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+<li class="right" style="margin-right: 10px">
+<a href="../genindex.html" title="General Index">index</a></li>
+<li class="right">
+<a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+<li class="right">
+<a href="../np-modindex.html" title="Python Module Index">modules</a> |</li>
+<li class="right">
+<a href="scipy.special.zeta.html" title="scipy.special.zeta">next</a> |</li>
+<li class="right">
+<a href="scipy.special.spence.html" title="scipy.special.spence">previous</a> |</li>
+<li><a href="../index.html">SciPy v0.11.dev Reference Guide (DRAFT)</a> »</li>
+<li><a href="../special.html">Special functions (<tt class="docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal"><span class="pre">scipy.special</span></tt>)</a> »</li>
+</ul>
+</div>
+<div class="footer">
+        © Copyright 2008-2009, The Scipy community.
+      Last updated on Feb 24, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+</body></html>

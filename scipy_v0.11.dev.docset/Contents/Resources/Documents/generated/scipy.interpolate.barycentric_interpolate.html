@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" SYSTEM "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/><title>scipy.interpolate.barycentric_interpolate — SciPy v0.11.dev Reference Guide (DRAFT)</title><link href="../_static/scipy.css" rel="stylesheet" type="text/css"/><link href="../_static/pygments.css" rel="stylesheet" type="text/css"/><script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.11.0.dev-b924f0b',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script><script src="../_static/jquery.js" type="text/javascript"></script><script src="../_static/underscore.js" type="text/javascript"></script><script src="../_static/doctools.js" type="text/javascript"></script><link href="../index.html" rel="top" title="SciPy v0.11.dev Reference Guide (DRAFT)"/><link href="../interpolate.html" rel="up" title="Interpolation (scipy.interpolate)"/><link href="scipy.interpolate.krogh_interpolate.html" rel="next" title="scipy.interpolate.krogh_interpolate"/><link href="scipy.interpolate.PiecewisePolynomial.extend.html" rel="prev" title="scipy.interpolate.PiecewisePolynomial.extend"/></head><body>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+<li class="right" style="margin-right: 10px">
+<a accesskey="I" href="../genindex.html" title="General Index">index</a></li>
+<li class="right">
+<a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+<li class="right">
+<a href="../np-modindex.html" title="Python Module Index">modules</a> |</li>
+<li class="right">
+<a accesskey="N" href="scipy.interpolate.krogh_interpolate.html" title="scipy.interpolate.krogh_interpolate">next</a> |</li>
+<li class="right">
+<a accesskey="P" href="scipy.interpolate.PiecewisePolynomial.extend.html" title="scipy.interpolate.PiecewisePolynomial.extend">previous</a> |</li>
+<li><a href="../index.html">SciPy v0.11.dev Reference Guide (DRAFT)</a> »</li>
+<li><a accesskey="U" href="../interpolate.html">Interpolation (<tt class="docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal"><span class="pre">scipy.interpolate</span></tt>)</a> »</li>
+</ul>
+</div>
+<div class="document">
+<div class="documentwrapper">
+<div class="bodywrapper">
+<div class="body">
+<div class="section" id="scipy-interpolate-barycentric-interpolate">
+<h1>scipy.interpolate.barycentric_interpolate<a class="headerlink" href="#scipy-interpolate-barycentric-interpolate" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<a name="//apple_ref/cpp/func/scipy.interpolate.barycentric_interpolate"></a><dt id="scipy.interpolate.barycentric_interpolate">
+<tt class="descclassname">scipy.interpolate.</tt><tt class="descname">barycentric_interpolate</tt><big>(</big><em>xi</em>, <em>yi</em>, <em>x</em><big>)</big><a class="headerlink" href="#scipy.interpolate.barycentric_interpolate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience function for polynomial interpolation</p>
+<p>Constructs a polynomial that passes through a given set of points,
+then evaluates the polynomial. For reasons of numerical stability,
+this function does not compute the coefficients of the polynomial.</p>
+<p>This function uses a “barycentric interpolation” method that treats
+the problem as a special case of rational function interpolation.
+This algorithm is quite stable, numerically, but even in a world of
+exact computation, unless the x coordinates are chosen very
+carefully - Chebyshev zeros (e.g. cos(i*pi/n)) are a good choice -
+polynomial interpolation itself is a very ill-conditioned process
+due to the Runge phenomenon.</p>
+<p>Based on Berrut and Trefethen 2004, “Barycentric Lagrange Interpolation”.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name"></col>
+<col class="field-body"></col>
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters :</th><td class="field-body"><p class="first"><strong>xi</strong> : array_like of length N</p>
+<blockquote>
+<div><p>The x coordinates of the points the polynomial should pass through</p>
+</div></blockquote>
+<p><strong>yi</strong> : array_like N by R</p>
+<blockquote>
+<div><p>The y coordinates of the points the polynomial should pass through;
+if R&gt;1 the polynomial is vector-valued.</p>
+</div></blockquote>
+<p><strong>x</strong> : scalar or array_like of length M</p>
+</td>
+</tr>
+<tr class="field"><th class="field-name">Returns :</th><td class="field-body"><p class="first"><strong>y</strong> : scalar or array_like of length R or length M or M by R</p>
+<blockquote class="last">
+<div><p>The shape of y depends on the shape of x and whether the
+interpolator is vector-valued or scalar-valued.</p>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>Construction of the interpolation weights is a relatively slow process.
+If you want to call this many times with the same xi (but possibly
+varying yi or x) you should use the class BarycentricInterpolator.
+This is what this function uses internally.</p>
+</dd></dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sphinxsidebar">
+<div class="sphinxsidebarwrapper">
+<p class="logo"><a href="../index.html">
+<img alt="Logo" class="logo" src="../_static/scipyshiny_small.png"/>
+</a></p>
+<h4>Previous topic</h4>
+<p class="topless"><a href="scipy.interpolate.PiecewisePolynomial.extend.html" title="previous chapter">scipy.interpolate.PiecewisePolynomial.extend</a></p>
+<h4>Next topic</h4>
+<p class="topless"><a href="scipy.interpolate.krogh_interpolate.html" title="next chapter">scipy.interpolate.krogh_interpolate</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+<li><a href="../_sources/generated/scipy.interpolate.barycentric_interpolate.txt" rel="nofollow">Show Source</a></li>
+</ul>
+<ul class="this-page-menu">
+<li><a href="/scipy/docs/scipy.interpolate.barycentric_interpolate">Edit page</a></li>
+</ul>
+<div id="searchbox" style="display: none">
+<h3>Quick search</h3>
+<form action="../search.html" class="search" method="get">
+<input name="q" size="18" type="text"/>
+<input type="submit" value="Go"/>
+<input name="check_keywords" type="hidden" value="yes"/>
+<input name="area" type="hidden" value="default"/>
+</form>
+<p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+</div>
+</div>
+<div class="clearer"></div>
+</div>
+<div class="related">
+<h3>Navigation</h3>
+<ul>
+<li class="right" style="margin-right: 10px">
+<a href="../genindex.html" title="General Index">index</a></li>
+<li class="right">
+<a href="../py-modindex.html" title="Python Module Index">modules</a> |</li>
+<li class="right">
+<a href="../np-modindex.html" title="Python Module Index">modules</a> |</li>
+<li class="right">
+<a href="scipy.interpolate.krogh_interpolate.html" title="scipy.interpolate.krogh_interpolate">next</a> |</li>
+<li class="right">
+<a href="scipy.interpolate.PiecewisePolynomial.extend.html" title="scipy.interpolate.PiecewisePolynomial.extend">previous</a> |</li>
+<li><a href="../index.html">SciPy v0.11.dev Reference Guide (DRAFT)</a> »</li>
+<li><a href="../interpolate.html">Interpolation (<tt class="docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal docutils literal"><span class="pre">scipy.interpolate</span></tt>)</a> »</li>
+</ul>
+</div>
+<div class="footer">
+        © Copyright 2008-2009, The Scipy community.
+      Last updated on Feb 24, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+</body></html>
